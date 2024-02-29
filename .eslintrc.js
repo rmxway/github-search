@@ -10,6 +10,7 @@ module.exports = {
 		'plugin:import/typescript',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:react/recommended',
+		'plugin:react-hooks/recommended',
 	],
 	plugins: ['@typescript-eslint', 'simple-import-sort', 'react', 'import'],
 	globals: {
@@ -56,6 +57,7 @@ module.exports = {
 			},
 		],
 		'@typescript-eslint/no-shadow': 'error',
+        '@typescript-eslint/no-unused-vars': 1,
 		// 'unused-imports/no-unused-imports': 'error',
 		// 'unused-imports/no-unused-vars': [
 		// 	'warn',
@@ -78,6 +80,7 @@ module.exports = {
 				jsx: 'never',
 			},
 		],
+		'react/display-name': 'off',
 		'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
 		'react/function-component-definition': [
 			'off',
@@ -88,6 +91,9 @@ module.exports = {
 		],
 	},
 	settings: {
+		react: {
+			version: 'detect',
+		},
 		'import/resolver': {
 			typescript: {},
 			node: {
