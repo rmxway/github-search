@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { SearchUser } from '@/components/SearchUser';
 import { InputUI } from '@/components/ui';
 import { useDebounce } from '@/hooks/debounce';
-import { useAppSelector } from '@/store';
+import { useAppSelector, usersSelector } from '@/store';
 import { useGetUsersQuery } from '@/store/gitHub/api';
 
 export const Home = () => {
@@ -18,7 +18,7 @@ export const Home = () => {
 		refetchOnFocus: true,
 	});
 
-	const { favorites } = useAppSelector((state) => state.user);
+	const { favorites } = useAppSelector(usersSelector);
 
 	useEffect(() => {
 		setIsDown(debounce.length > 3);

@@ -1,9 +1,9 @@
 import { ButtonUI, LinkUI } from '@/components/ui';
-import { useAppDispatch, useAppSelector } from '@/store';
+import { useAppDispatch, useAppSelector, usersSelector } from '@/store';
 import { removeFromFavorites } from '@/store/reducer/user';
 
 export const Favorites = () => {
-	const { favorites } = useAppSelector((state) => state.user);
+	const { favorites } = useAppSelector(usersSelector);
 	const dispatch = useAppDispatch();
 
 	return (
@@ -20,10 +20,7 @@ export const Favorites = () => {
 									{fav.html_url}
 								</LinkUI>
 							</div>
-							<ButtonUI
-								className="ml-5"
-								onClick={() => dispatch(removeFromFavorites(fav.id as number))}
-							>
+							<ButtonUI className="ml-5" onClick={() => dispatch(removeFromFavorites(fav.id as number))}>
 								Remove
 							</ButtonUI>
 						</li>
