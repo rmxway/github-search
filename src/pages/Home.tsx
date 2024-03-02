@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
 import { SearchUser } from '@/components/SearchUser';
@@ -5,6 +6,7 @@ import { InputUI } from '@/components/ui';
 import { useDebounce } from '@/hooks/debounce';
 import { useAppSelector, usersSelector } from '@/store';
 import { useGetUsersQuery } from '@/store/gitHub/api';
+import { dropdownVariants } from '@/styles/variants';
 
 export const Home = () => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
@@ -45,24 +47,31 @@ export const Home = () => {
 				ref={inputRef}
 			></InputUI>
 			<div className="relative">
-				{isDown && !isFetching && isSuccess && (
-					<div
-						className="absolute z-10 bg-white shadow-big
+				<AnimatePresence>
+					{isDown && !isFetching && isSuccess && (
+						<motion.div
+							layout
+							variants={dropdownVariants}
+							initial="hidden"
+							animate="visible"
+							exit="hidden"
+							className="absolute z-10 bg-[#fff] shadow-big
         top-[0px] left-0 right-0 max-h-[320px] overflow-y-auto rounded-[8px]"
-					>
-						{data?.map((user) => (
-							<SearchUser
-								key={user.id}
-								{...{ user }}
-								toggle={!!favorites.find((fav) => fav.id === user.id)?.login}
-								onClick={(e) => {
-									e.stopPropagation();
-									userElementRef.current = e.currentTarget;
-								}}
-							/>
-						))}
-					</div>
-				)}
+						>
+							{data?.map((user) => (
+								<SearchUser
+									key={user.id}
+									{...{ user }}
+									toggle={!!favorites.find((fav) => fav.id === user.id)?.login}
+									onClick={(e) => {
+										e.stopPropagation();
+										userElementRef.current = e.currentTarget;
+									}}
+								/>
+							))}
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</div>
 
 			<div className="p-5 font-mono">

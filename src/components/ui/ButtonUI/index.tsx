@@ -1,7 +1,7 @@
 import cn from 'classnames';
-import { HTMLAttributes } from 'react';
+import { HTMLMotionProps, motion } from 'framer-motion';
 
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends HTMLMotionProps<'button'> {
 	primary?: boolean;
 	secondary?: boolean;
 	danger?: boolean;
@@ -10,7 +10,8 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
 
 export const ButtonUI = ({ primary, secondary, danger, success, className, children, ...props }: ButtonProps) => {
 	const btnClass = `${cn({
-		'inline-block border-2 active:opacity-85 hover:opacity-95 rounded-full p-[6px_15px] text-white text-sm': true,
+		'inline-block border-2 active:opacity-85 hover:opacity-95 transition rounded-full p-[6px_15px] text-white text-sm':
+			true,
 		'!text-gray-500 border-gray-300': !primary && !secondary && !danger && !success,
 		'bg-gray-400 border-[#8e8e8e]': primary,
 		'bg-[#ffc3a0] border-[#eda174] text-[#731d0f]': secondary,
@@ -20,9 +21,9 @@ export const ButtonUI = ({ primary, secondary, danger, success, className, child
 	})}`;
 
 	return (
-		<button className={btnClass} {...props}>
+		<motion.button className={btnClass} {...props}>
 			{children}
-		</button>
+		</motion.button>
 	);
 };
 

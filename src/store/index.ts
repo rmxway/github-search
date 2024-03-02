@@ -2,9 +2,8 @@ import { configureStore, createListenerMiddleware, isAnyOf } from '@reduxjs/tool
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import { gitHubAPI } from '@/store/gitHub/api';
+import { setUsersStorage } from '@/store/local';
 import userReducer, { addToFavorites, removeFromFavorites } from '@/store/reducer/user';
-
-import { setUsersStorage } from './local';
 
 const listenerMiddleware = createListenerMiddleware();
 const startAppListening = listenerMiddleware.startListening.withTypes<RootState, AppDispatch>();
