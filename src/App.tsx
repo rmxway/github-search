@@ -2,7 +2,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 import { Favorites } from '@/pages/Favorites';
 import { Home } from '@/pages/Home';
-import { UserPage } from '@/pages/User';
+import { UIPage } from '@/pages/UI';
 
 export const App = () => (
 	<>
@@ -25,7 +25,7 @@ export const App = () => (
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/favorites" element={<Favorites />} />
-				<Route path="/user" element={<UserPage />} />
+				<Route path="/ui" element={<UIPage />} />
 			</Routes>
 		</div>
 	</>

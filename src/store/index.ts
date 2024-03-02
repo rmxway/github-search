@@ -4,13 +4,11 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { gitHubAPI } from '@/store/gitHub/api';
 import userReducer from '@/store/reducer/user';
 
-const rootReducer = {
-	[gitHubAPI.reducerPath]: gitHubAPI.reducer,
-	user: userReducer,
-};
-
 export const store = configureStore({
-	reducer: rootReducer,
+	reducer: {
+		[gitHubAPI.reducerPath]: gitHubAPI.reducer,
+		user: userReducer,
+	},
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(gitHubAPI.middleware),
 });
 

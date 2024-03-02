@@ -1,25 +1,30 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { GitHubUser } from '@/modules/interfaces';
+
 type InitialStateType = {
-	userApi: string;
+	favorites: GitHubUser[];
 };
 
 const initialState: InitialStateType = {
-	userApi: '',
+	favorites: [],
 };
 
 const userReducer = createSlice({
-	name: 'user',
+	name: 'users',
 	initialState,
 	reducers: {
-		changeUserApi: (state, action: PayloadAction<string>) => {
-			state.userApi = action.payload;
+		addToFavorites: (state, { payload: user }: PayloadAction<GitHubUser>) => {
+			state.favorites.push(user);
+		},
+		removeFromFavorites: (state, { payload: id }: PayloadAction<number>) => {
+			state.favorites = state.favorites.filter((item) => item.id !== id);
 		},
 	},
 });
 
 const { actions, reducer } = userReducer;
 
-export const { changeUserApi } = actions;
+export const { addToFavorites, removeFromFavorites } = actions;
 
 export default reducer;
