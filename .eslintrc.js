@@ -21,8 +21,9 @@ module.exports = {
 		{
 			env: {
 				node: true,
+				'jest': true,
 			},
-			files: ['.eslintrc.{js,cjs}'],
+			files: ['.eslintrc.{js,cjs}', 'tests/**/*'],
 			parserOptions: {
 				sourceType: 'script',
 			},
@@ -57,7 +58,7 @@ module.exports = {
 			},
 		],
 		'@typescript-eslint/no-shadow': 'error',
-        '@typescript-eslint/no-unused-vars': 1,
+		'@typescript-eslint/no-unused-vars': 1,
 		// 'unused-imports/no-unused-imports': 'error',
 		// 'unused-imports/no-unused-vars': [
 		// 	'warn',
