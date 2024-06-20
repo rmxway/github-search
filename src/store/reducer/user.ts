@@ -3,9 +3,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GitHubUser } from '@/modules/interfaces';
 import { getUsersStorage } from '@/store/local';
 
-type InitialStateType = {
+interface InitialStateType {
 	favorites: GitHubUser[];
-};
+}
 
 const initialState: InitialStateType = {
 	favorites: getUsersStorage(),

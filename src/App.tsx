@@ -1,8 +1,4 @@
-import { NavLink, Route, Routes } from 'react-router-dom';
-
-import { Favorites } from '@/pages/Favorites';
-import { Home } from '@/pages/Home';
-import { UIPage } from '@/pages/UI';
+import { NavLink, Outlet } from 'react-router-dom';
 
 export const App = () => {
 	const activeNavFn = ({ isActive }: { isActive: boolean }) => (isActive ? 'text-lime-500' : 'transition');
@@ -29,11 +25,7 @@ export const App = () => {
 				</nav>
 			</div>
 			<div className="container m-auto p-10 pt-7">
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/favorites" element={<Favorites />} />
-					<Route path="/ui" element={<UIPage />} />
-				</Routes>
+				<Outlet />
 			</div>
 		</>
 	);
