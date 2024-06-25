@@ -12,19 +12,19 @@ import { App } from './App';
 
 const router = createBrowserRouter([
 	{
-		path: '/',
+		path: '/github-search',
 		element: <App />,
 		children: [
 			{
-				path: '/',
+				path: '/github-search',
 				element: <Home />,
 			},
 			{
-				path: '/favorites',
+				path: '/github-search/favorites',
 				element: <Favorites />,
 			},
 			{
-				path: '/ui',
+				path: '/github-search/ui',
 				element: <UIPage />,
 			},
 		],

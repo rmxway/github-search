@@ -16,10 +16,10 @@ export const App = () => {
 					<h2 className="text-2xl">Redux Toolkit for GitHub API</h2>
 				</div>
 				<nav className="flex flex-nowrap gap-12 mt-4 mb-4 font-mono font-bold">
-					<NavLink to="/" className={activeNavFn}>
+					<NavLink to="/github-search" end className={activeNavFn}>
 						Main
 					</NavLink>
-					<NavLink to="/favorites" className={activeNavFn}>
+					<NavLink to="/github-search/favorites" end className={activeNavFn}>
 						Favorites
 					</NavLink>
 				</nav>

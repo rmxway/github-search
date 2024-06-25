@@ -16,7 +16,6 @@
 		"typescript": "^5.4.5"
 	},
 	"scripts": {
-		"predeploy": "yarn run build",
 		"deploy": "gh-pages -d build",
 		"dev": "craco start",
 		"build": "craco build",
