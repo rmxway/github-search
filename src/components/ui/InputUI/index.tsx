@@ -1,10 +1,9 @@
-export function InputUI({
-	children,
-	value,
-	onClear,
-	...props
-}: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & { onClear?: () => void }) {
-	return (
+import { forwardRef, Ref } from 'react';
+
+type InputUIProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+
+export const InputUI = forwardRef(
+	({ children, value, onClear, ...props }: InputUIProps & { onClear?: () => void }, ref: Ref<HTMLInputElement>) => (
 		<label htmlFor="search" className="w-full block relative h-[40px]">
 			<input
 				id="search"
@@ -13,6 +12,7 @@ export function InputUI({
           transition-all bg-slate-50 outline-none border rounded-[8px] overflow-hidden"
 				{...{ value }}
 				{...props}
+				ref={ref}
 			/>
 			{value && value?.toString().length > 0 && (
 				<button
@@ -25,7 +25,7 @@ export function InputUI({
 			)}
 			{children}
 		</label>
-	);
-}
+	),
+);
 
 export default InputUI;

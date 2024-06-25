@@ -1,9 +1,27 @@
-import { ResponseUser } from '@/modules/interfaces';
+import { HTMLAttributes, useState } from 'react';
 
-export const SearchUser = ({ user }: { user: ResponseUser }) => (
-	<p className="ps-5 pt-3 pb-3 hover:bg-slate-100" key={user.id}>
-		<a href={user.html_url} target="_blank" rel="noreferrer" className="flex items-center">
-			<img src={user.avatar_url} alt={user.gravatar_id} className="w-[40px] mr-2 rounded-full" />
+import { ButtonUI } from '@/components/ui';
+import { ResponseUser } from '@/modules/interfaces';
+import { useAppDispatch } from '@/store';
+import { addToFavorites, removeFromFavorites } from '@/store/reducer/user';
+
+interface SearchUserProps extends HTMLAttributes<HTMLDivElement> {
+	user: ResponseUser;
+	toggle: boolean;
+}
+
+export const SearchUser = ({ user, toggle = false, ...props }: SearchUserProps) => {
+	const [isFav, setIsFav] = useState<boolean>(toggle);
+	const dispatch = useAppDispatch();
+
+	const handleToggleFavorites = () => {
+		setIsFav((prev) => !prev);
+		!isFav ? dispatch(addToFavorites(user)) : dispatch(removeFromFavorites(user.id));
+	};
+
+	return (
+		<div className="flex items-center ps-5 pt-3 pb-3 hover:bg-slate-100 transition gap-4" {...props}>
+			<img src={user.avatar_url} alt={user.gravatar_id} className="w-[40px] rounded-full" />
 			<div className="flex flex-col">
 				<div className="flex gap-4 items-center">
 					<span className="font-bold text-lg">{user.login}</span>
@@ -11,7 +29,12 @@ export const SearchUser = ({ user }: { user: ResponseUser }) => (
 				</div>
 				<span>{user.html_url}</span>
 			</div>
-		</a>
-	</p>
-);
+			<div>
+				<ButtonUI success={isFav} onClick={handleToggleFavorites} className="w-[90px]">
+					{isFav ? 'like it' : 'favorite'}
+				</ButtonUI>
+			</div>
+		</div>
+	);
+};
 export default SearchUser;

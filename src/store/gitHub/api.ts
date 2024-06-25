@@ -5,12 +5,12 @@ import { GitHubUsersResponse, ResponseUser } from '@/modules/interfaces';
 export const gitHubAPI = createApi({
 	reducerPath: 'api/gitHub',
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'https://api.github.com/search/',
+		baseUrl: 'https://api.github.com/',
 	}),
 	endpoints: (builder) => ({
 		getUsers: builder.query<ResponseUser[], string>({
 			query: (name: string) => ({
-				url: 'users',
+				url: 'search/users',
 				params: {
 					q: name,
 				},
