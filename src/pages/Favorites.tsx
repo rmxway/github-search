@@ -1,6 +1,7 @@
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 
 import { ButtonUI, LinkUI } from '@/components/ui';
+import { mainPath } from '@/helper/constants';
 import { useAppDispatch, useAppSelector, usersSelector } from '@/store';
 import { removeFromFavorites } from '@/store/reducer/user';
 import { variantsFavorite } from '@/styles/variants';
@@ -51,7 +52,7 @@ export const Favorites = () => {
 				</motion.ul>
 				{favorites.length === 0 && (
 					<motion.p layout variants={variantsFavorite} initial="hidden" animate="visible" exit="hidden">
-						Not added to favorites yet. Go to <LinkUI href="/">main page</LinkUI> and search the best
+						Not added to favorites yet. Go to <LinkUI href={mainPath}>main page</LinkUI> and search the best
 						repositories
 					</motion.p>
 				)}

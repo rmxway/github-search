@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { mainPath } from '@/helper/constants';
 import { Favorites, Home, UIPage } from '@/pages';
 import { store } from '@/store';
 
@@ -12,19 +13,19 @@ import { App } from './App';
 
 const router = createBrowserRouter([
 	{
-		path: '/github-search',
+		path: mainPath,
 		element: <App />,
 		children: [
 			{
-				path: '/github-search',
+				path: mainPath,
 				element: <Home />,
 			},
 			{
-				path: '/github-search/favorites',
+				path: `${mainPath}/favorites`,
 				element: <Favorites />,
 			},
 			{
-				path: '/github-search/ui',
+				path: `${mainPath}/ui`,
 				element: <UIPage />,
 			},
 		],

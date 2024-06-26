@@ -1,5 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 
+import { mainPath } from '@/helper/constants';
+
 export const App = () => {
 	const activeNavFn = ({ isActive }: { isActive: boolean }) => (isActive ? 'text-lime-500' : 'transition');
 
@@ -16,10 +18,10 @@ export const App = () => {
 					<h2 className="text-2xl">Redux Toolkit for GitHub API</h2>
 				</div>
 				<nav className="flex flex-nowrap gap-12 mt-4 mb-4 font-mono font-bold">
-					<NavLink to="/github-search" end className={activeNavFn}>
+					<NavLink to={mainPath} end className={activeNavFn}>
 						Main
 					</NavLink>
-					<NavLink to="/github-search/favorites" end className={activeNavFn}>
+					<NavLink to={`${mainPath}/favorites`} end className={activeNavFn}>
 						Favorites
 					</NavLink>
 				</nav>
